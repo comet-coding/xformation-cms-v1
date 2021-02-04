@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: comet-coding/xformation-cms-v1
   branch: master
   commit_messages:
     create: 'Create {{collection}} “{{slug}}”'
