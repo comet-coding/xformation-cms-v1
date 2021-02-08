@@ -27,6 +27,7 @@ collections:
       - {label: "Featured Image", name: "featuredimage", widget: image}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list"}
+
   - name: "taas"
     label: "Taas"
     folder: "src/pages/productstaas"
