@@ -40,9 +40,10 @@ class BlogIndex extends React.Component {
             alignItems: 'center',
             listStyle: 'none',
             padding: 0,
-            width: '100%',
+            width: '80%',
             position: 'absolute',
-            top: '30%'
+            top: '50%',
+            left: '10%'
           }}
         >
           {!isFirst && (
