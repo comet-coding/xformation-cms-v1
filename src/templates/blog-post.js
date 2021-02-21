@@ -13,10 +13,7 @@ export const BlogPostTemplate = ({
   tags,
   title,
   helmet,
-  data,
-  prev,
-  next,
-  pageContext,
+
 }) => {
   const PostContent = contentComponent || Content;
 
@@ -31,18 +28,7 @@ export const BlogPostTemplate = ({
             </h1>
             <h3>Single Post</h3>
             <p>{description}</p>
-            <ul className="taglist">
-              {prev && (
-                <Link to={prev.node.fields.slug}>
-                  {"<"} {prev.node.frontmatter.title}
-                </Link>
-              )}
-              {next && (
-                <Link to={next.node.fields.slug}>
-                  {next.node.frontmatter.title} {">"}
-                </Link>
-              )}
-            </ul>
+
             <PostContent content={content} />
             {tags && tags.length ? (
               <div style={{ marginTop: `4rem` }}>

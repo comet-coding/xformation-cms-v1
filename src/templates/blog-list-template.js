@@ -20,13 +20,14 @@ class BlogIndex extends React.Component {
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
-            <div key={node.fields.slug}>
+            <div key={node.fields.slug} className='slider'>
               <h3>
                 <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
                   {title}
                 </Link>
               </h3>
               <small>{node.frontmatter.date}</small>
+              <p>{node.frontmatter.description}</p>
               <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
             </div>
           )
@@ -39,11 +40,14 @@ class BlogIndex extends React.Component {
             alignItems: 'center',
             listStyle: 'none',
             padding: 0,
+            width: '100%',
+            position: 'absolute',
+            top: '30%'
           }}
         >
           {!isFirst && (
-            <Link to={prevPage} rel="prev">
-              ← Previous Page
+            <Link to={prevPage} rel="prev" style={{fontSize: '3rem'}}>
+              ←
             </Link>
           )}
           {/* {Array.from({ length: numPages }, (_, i) => (
@@ -66,8 +70,8 @@ class BlogIndex extends React.Component {
             </li>
           ))} */}
           {!isLast && (
-            <Link to={nextPage} rel="next">
-              Next Page →
+            <Link to={nextPage} rel="next" style={{fontSize: '3rem'}}>
+               →
             </Link>
           )}
         </ul>
