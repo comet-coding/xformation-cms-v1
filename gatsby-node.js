@@ -30,8 +30,7 @@ exports.createPages = ({ actions, graphql }) => {
 		}
 
 		// Pagination
-		const postPerPage = 1;
-		const numbPages = Math.ceil(data.allMarkdownRemark.edges.length);
+
 		// Pagination
 
 		const posts = result.data.allMarkdownRemark.edges;
