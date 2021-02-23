@@ -5,6 +5,8 @@ const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 
 exports.createPages = ({ actions, graphql }) => {
 	const { createPage } = actions;
+	// const blogLayout = path.resolve(`./src/layouts/blog-post.js`);
+	const blogList = path.resolve('./src/templates/blog-list-template.js');
 
 	return graphql(`
     {
@@ -30,10 +32,42 @@ exports.createPages = ({ actions, graphql }) => {
 		}
 
 		// Pagination
-
+		const posts = result.data.allMarkdownRemark.edges;
+		const postsPerPage = 1;
+		const numPages = Math.ceil(posts.length / postsPerPage);
+		Array.from({ length: numPages }).forEach((_, i) => {
+			createPage({
+				path: i === 0 ? `/bloglist` : `/bloglist/${i + 1}`,
+				component: blogList,
+				context: {
+					limit: postsPerPage,
+					skip: i * postsPerPage,
+					numPages,
+					currentPage: i + 1
+				}
+			});
+		});
 		// Pagination
 
-		const posts = result.data.allMarkdownRemark.edges;
+		// Creating blog posts
+		// posts.forEach((post, index, arr) => {
+		//   post.node.frontmatter.category.forEach((cat) => categories.push(cat));
+		//   authors.push(post.node.frontmatter.author);
+
+		//   const prev = arr[index - 1];
+		//   const next = arr[index + 1];
+
+		//   createPage({
+		//     path: post.node.fields.slug,
+		//     component: blogLayout,
+		//     context: {
+		//       slug: post.node.fields.slug,
+		//       prev: prev,
+		//       next: next,
+		//     },
+		//   });
+		// });
+		// const posts = result.data.allMarkdownRemark.edges;
 
 		posts.forEach((edge) => {
 			const id = edge.node.id;
